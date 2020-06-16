@@ -8,7 +8,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/CaamDauIndexes.svg?style=flat)](https://cocoapods.org/pods/CaamDauIndexes)
 [![](https://img.shields.io/badge/Swift-4.0~5.0-orange.svg?style=flat)](https://cocoapods.org/pods/CaamDauIndexes)
 
-# CD_IndexesView 一个漂亮的侧边索引
+# IndexesView 一个漂亮的侧边索引
 
 ## Installation
 
@@ -33,8 +33,8 @@ pod 'CaamDau/Indexes'
         return ["选", "主"] + CD.atoz(true) + ["#"]
     }()
     
-    lazy var indexesView: CD_IndexesView = {
-        return CD_IndexesView()
+    lazy var indexesView: IndexesView = {
+        return IndexesView()
     }()
     
     override func viewDidLoad() {
@@ -46,7 +46,7 @@ pod 'CaamDau/Indexes'
             $0.centerY.equalTo(tableView)
             $0.top.greaterThanOrEqualTo(tableView).offset(20)
         }
-        indexesView.items = headers.map{ CD_IndexesView.Item(title:$0, color:Config.color.txt_1)}
+        indexesView.items = headers.map{ IndexesView.Item(title:$0, color:Config.color.txt_1)}
         //indexesView.firstIndex = 1
         indexesView.selectHandler = { [weak self](item, idx)in
             let i = self!.headers.index(of: item.title)!

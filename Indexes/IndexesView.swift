@@ -10,7 +10,7 @@
 import UIKit
 import SnapKit
 import CaamDauExtension
-extension CD_IndexesView{
+extension IndexesView{
     public struct Item {
         private init(){
             self.init(title:"")
@@ -91,7 +91,7 @@ extension CD_IndexesView{
         }
     }
 }
-public class CD_IndexesView: UIView {
+public class IndexesView: UIView {
     /// 索引
     open var items:[Item] = [] {
         didSet {
@@ -119,8 +119,8 @@ public class CD_IndexesView: UIView {
     }()
     // - HUD
     open var hudStyle:HUD = HUD()
-    var _hud: CD_IndexesViewHUD?
-    var hud: CD_IndexesViewHUD? {
+    var _hud: IndexesViewHUD?
+    var hud: IndexesViewHUD? {
         set{
            _hud = newValue
         }
@@ -128,8 +128,8 @@ public class CD_IndexesView: UIView {
             return _hud == nil ? makeHUD() : _hud
         }
     }
-    func makeHUD() -> CD_IndexesViewHUD {
-        _hud = CD_IndexesViewHUD(hudStyle)
+    func makeHUD() -> IndexesViewHUD {
+        _hud = IndexesViewHUD(hudStyle)
         self.superview?.addSubview(_hud!)
         
         switch hudStyle.style {
@@ -184,7 +184,7 @@ public class CD_IndexesView: UIView {
 }
 
 //MARK:--- highlight ----------
-extension CD_IndexesView {
+extension IndexesView {
     func highlight(with touches: Set<UITouch>) {
         guard let touch = touches.first else {
             return
@@ -256,7 +256,7 @@ extension CD_IndexesView {
     }
 }
 
-extension CD_IndexesView{
+extension IndexesView{
     func makeUI() {
         self.cd
             .background(.clear)
@@ -300,7 +300,7 @@ extension CD_IndexesView{
 
 
 //MARK:--- HUD ----------
-class CD_IndexesViewHUD: UIView {
+class IndexesViewHUD: UIView {
     lazy var button: UIButton  = {
         let button = UIButton(type: .custom)
         self.cd.add(button)
@@ -321,19 +321,19 @@ class CD_IndexesViewHUD: UIView {
         return imageView
     }()
     
-    var style:CD_IndexesView.HUD = CD_IndexesView.HUD() {
+    var style:IndexesView.HUD = IndexesView.HUD() {
         didSet{
             
         }
     }
     var completion:(()->Void)?
     var remove:Bool = false
-    func show(item:CD_IndexesView.Item) {
+    func show(item:IndexesView.Item) {
         button.cd
             .image(item.icon)
             .text(item.title)
     }
-    convenience init(_ style:CD_IndexesView.HUD) {
+    convenience init(_ style:IndexesView.HUD) {
         self.init(frame:.zero)
         self.style = style
         makeUI()
@@ -400,7 +400,7 @@ class CD_IndexesViewHUD: UIView {
         bezierPath.fill()
     }
 }
-extension CD_IndexesViewHUD: CAAnimationDelegate {
+extension IndexesViewHUD: CAAnimationDelegate {
     func animationDidStart(_ anim: CAAnimation) {
     }
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
